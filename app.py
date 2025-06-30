@@ -47,10 +47,10 @@ def process_file(file):
     # Step 5: Add Column Names
     column_names = [
         "Debtor Reference",
+        "Transaction Type",
         "Document Number",
         "Document Date",
         "Document Balance",
-        "Document Type",
     ]
     output = pd.DataFrame(columns=column_names)
 
@@ -85,7 +85,7 @@ def process_file(file):
             except:
                 return "INV"  # default
 
-        output["Document Type"] = output["Document Balance"].apply(determine_doc_type)
+        output["Transaction Type"] = output["Document Balance"].apply(determine_doc_type)
 
         # Step 11: Reorder columns - already in correct order based on requirements
         # A remains, E->B, C remains, D remains, E becomes Document balance
